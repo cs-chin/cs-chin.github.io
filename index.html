@@ -6,5 +6,19 @@
 </head>
 <body>
 	<h1>初めてのサイトです</h1>
+	
+<script>
+/* serviceWorker */
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('/sw.js', { scope: '/' })
+	.then(function(reg) {
+		console.log('登録に成功しました。 Scope は ' + reg.scope);
+		// alert('登録に成功しました。 Scope は ' + reg.scope);
+	}).catch(function(error) {
+		console.log('登録に失敗しました。' + error);
+		// alert('登録に失敗しました。' + error);
+	});
+}
+</script>
 </body>
 </html>
