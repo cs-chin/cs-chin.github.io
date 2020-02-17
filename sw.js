@@ -5,13 +5,13 @@ self.addEventListener('install', (event) => {
 console.log('service worker install ...');
 
   // キャッシュ完了までインストールが終わらないように待つ
-  event.waitUntil(
-  caches.open('v1').then((cache) => {
-    return cache.addAll([
-      '/',
-    ]);
-  })
-  );
+  // event.waitUntil(
+  // caches.open('v1').then((cache) => {
+  //   return cache.addAll([
+  //     '/',
+  //   ]);
+  // })
+  // );
 });
 
 
