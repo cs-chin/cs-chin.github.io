@@ -3,11 +3,11 @@
 	"short_name": "PWA",
 	"background_color": "#fc980c",
 	"icons": [{
-		"src": "images/icon-256.png",
+		"src": "./images/icon-256.png",
 		"sizes": "256x256",
 		"type": "image/png"
 	},{
-		"src": "images/icon-192.png",
+		"src": "./images/icon-192.png",
 		"sizes": "192x192",
 		"type": "image/png"
 	}],
