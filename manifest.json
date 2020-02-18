@@ -2,10 +2,6 @@
 	"name": "PWA Sample",
 	"short_name": "PWA",
 	"description": "説明文が入ります",
-	"background_color": "#fc980c",
-	"start_url": "./?utm_source=homescreen",
-	"display": "fullscreen",
-	"orientation": "portrait",// ← 縦向き landscape ← 横向き
 	"icons": [
 	{
 		"src": "/images/icon-48.png",
@@ -36,6 +32,9 @@
 		"sizes": "512x512",
 		"type": "image/png"
 	}
-	]
-	
+	],
+	"start_url": "./?utm_source=homescreen",
+	"background_color": "#fc980c",
+	"display": "fullscreen",
+	"orientation": "portrait"// ← 縦向き landscape ← 横向き
 }
