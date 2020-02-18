@@ -4,7 +4,7 @@
 	"description": "説明文が入ります",
 	"background_color": "#fc980c",
 	"start_url": "./?utm_source=homescreen",
-	"display": "standalone",
+	"display": "fullscreen",
 	"orientation": "portrait",// ← 縦向き landscape ← 横向き
 	"icons": [
 	{
