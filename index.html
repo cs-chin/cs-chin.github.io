@@ -2,18 +2,18 @@
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
 	<meta name="theme-color" content="#222f4e">
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-title" content="PWA">
-	<link rel="apple-touch-icon" href="/images/icon-72.png" sizes="72x72">
+	<link rel="manifest" href="/manifest.json" />
+	<!-- <link rel="apple-touch-icon" href="/images/icon-72.png" sizes="72x72">
 	<link rel="apple-touch-icon" href="/images/icon-114.png" sizes="114x114">
 	<link rel="apple-touch-icon" href="/images/icon-120.png" sizes="120x120">
-	<link rel="apple-touch-icon" href="/images/icon-144.png" sizes="144x144">
-	<!-- <link rel="manifest" href="/manifest.webmanifest" /> -->
-	<link rel="manifest" href="/manifest.json">
+	<link rel="apple-touch-icon" href="/images/icon-144.png" sizes="144x144"> -->
+	
 	<link rel="shortcut icon" href="https://cs-chin.github.io/images/favicon.ico" type="image/vnd.microsoft.icon" />
 	<script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.6/pwacompat.min.js"
     integrity="sha384-GOaSLecPIMCJksN83HLuYf9FToOiQ2Df0+0ntv7ey8zjUHESXhthwvq9hXAZTifA"
@@ -24,6 +24,7 @@
 <body>
 	<h1>初めてのPWS</h1>
 	<img src="./images/icon-256.png" alt="" class="image" />
+	<div id="btnAdd">Install</div>
 
 <script>
 /* serviceWorker */
@@ -39,12 +40,37 @@ if ('serviceWorker' in navigator) {
 }
 
 let deferredPrompt;
+let btnAdd = document.getElementById('btnAdd');
 
 window.addEventListener('beforeinstallprompt', (e) => {
-	console.log("显示「添加到主屏幕」对话框");
+	e.preventDefault();
+	// Stash the event so it can be triggered later.
+	deferredPrompt = e;
+	btnAdd.style.display = 'block';
   // Stash the event so it can be triggered later.
 //   deferredPrompt = e;
 //   ...
+});
+
+btnAdd.addEventListener('click', (e) => {
+	// hide our user interface that shows our APP button
+	btnAdd.style.display = 'none';
+	// Show the prompt
+	deferredPrompt.prompt();
+	// Wait for the user to respond to the prompt
+	deferredPrompt.userChoice
+	.then((choiceResult) => {
+		if (choiceResult.outcome === 'accepted') {
+			console.log('User accepted the APP prompt');
+		} else {
+			console.log('User dismissed the APP prompt');
+		}
+		deferredPrompt = null;
+	});
+});
+
+window.addEventListener('appinstalled', (evt) => {
+  console.log('app installed');
 });
 </script>
 </body>
