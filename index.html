@@ -23,6 +23,15 @@ if ('serviceWorker' in navigator) {
 		// alert('登録に失敗しました。' + error);
 	});
 }
+
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+	console.log("显示「添加到主屏幕」对话框");
+  // Stash the event so it can be triggered later.
+//   deferredPrompt = e;
+//   ...
+});
 </script>
 </body>
 </html>
