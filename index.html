@@ -28,7 +28,8 @@
 <script>
 /* serviceWorker */
 if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('/sw.js', { scope: '/' })
+	navigator.serviceWorker.register('/sw.js')
+	// navigator.serviceWorker.register('/sw.js', { scope: '/' })
 	.then(function(reg) {
 		console.log('登録に成功しました。 Scope は ' + reg.scope);
 		// alert('登録に成功しました。 Scope は ' + reg.scope);
@@ -36,41 +37,38 @@ if ('serviceWorker' in navigator) {
 		console.log('登録に失敗しました。' + error);
 		// alert('登録に失敗しました。' + error);
 	});
-}
 
-let deferredPrompt;
-let btnAdd = document.getElementById('btnAdd');
+	let deferredPrompt;
+	let btnAdd = document.getElementById('btnAdd');
 
-window.addEventListener('beforeinstallprompt', (e) => {
-	e.preventDefault();
-	// Stash the event so it can be triggered later.
-	deferredPrompt = e;
-	btnAdd.style.display = 'block';
-  // Stash the event so it can be triggered later.
-//   deferredPrompt = e;
-//   ...
-});
-
-btnAdd.addEventListener('click', (e) => {
-	// hide our user interface that shows our APP button
-	btnAdd.style.display = 'none';
-	// Show the prompt
-	deferredPrompt.prompt();
-	// Wait for the user to respond to the prompt
-	deferredPrompt.userChoice
-	.then((choiceResult) => {
-		if (choiceResult.outcome === 'accepted') {
-			console.log('User accepted the APP prompt');
-		} else {
-			console.log('User dismissed the APP prompt');
-		}
-		deferredPrompt = null;
+	window.addEventListener('beforeinstallprompt', (e) => {
+		console.log('beforeinstallprompt');
+		e.preventDefault();
+		deferredPrompt = e;
+		btnAdd.style.display = 'block';
 	});
-});
 
-window.addEventListener('appinstalled', (evt) => {
-  console.log('app installed');
-});
+	btnAdd.addEventListener('click', (e) => {
+		// hide our user interface that shows our APP button
+		btnAdd.style.display = 'none';
+		// Show the prompt
+		deferredPrompt.prompt();
+		// Wait for the user to respond to the prompt
+		deferredPrompt.userChoice
+		.then((choiceResult) => {
+			if (choiceResult.outcome === 'accepted') {
+				console.log('User accepted the APP prompt');
+			} else {
+				console.log('User dismissed the APP prompt');
+			}
+			deferredPrompt = null;
+		});
+	});
+
+	window.addEventListener('appinstalled', (evt) => {
+		console.log('app installed');
+	});
+}
 </script>
 </body>
 </html>
