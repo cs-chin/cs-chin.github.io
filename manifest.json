@@ -35,6 +35,6 @@
 	],
 	"start_url": "./?utm_source=homescreen",
 	"background_color": "#fc980c",
-	"display": "fullscreen"
+	"display": "standalone"
 	// "orientation": "portrait"// ← 縦向き landscape ← 横向き
 }
