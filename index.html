@@ -16,14 +16,33 @@
 	<script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.6/pwacompat.min.js"
     integrity="sha384-GOaSLecPIMCJksN83HLuYf9FToOiQ2Df0+0ntv7ey8zjUHESXhthwvq9hXAZTifA"
 	crossorigin="anonymous"></script>
+	<style>
+		.btn-square-pop {
+		position: relative;
+		display: inline-block;
+		padding: 0.25em 0.5em;
+		text-decoration: none;
+		color: #FFF;
+		background: #fd9535;/*背景色*/
+		border-bottom: solid 2px #d27d00;/*少し濃い目の色に*/
+		border-radius: 4px;/*角の丸み*/
+		box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+		font-weight: bold;
+		}
+
+		.btn-square-pop:active {
+		border-bottom: solid 2px #fd9535;
+		box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+		}
+	</style>
 	
 	<title>はじめてのPWS</title>
 </head>
 <body>
 	<h1>はじめてのPWS</h1>
 	<img src="./images/icon-256.png" alt="" class="image" />
-	<div id="btnAdd" style="display: none;">Install</div>
-	<div id="msg" style="padding: 10px;border: 1px solid green;color: green;margin: 20px 0;"></div>
+	<div id="btnAdd" class="btn-square-pop" style="display: none;">Install</div>
+	<div id="msg" style="padding: 15px;border: 1px solid green;color: green;margin: 20px 0;"></div>
 
 <script>
 /* serviceWorker */
@@ -35,13 +54,13 @@ if ('serviceWorker' in navigator) {
 	window.addEventListener('load', () => {
 		navigator.serviceWorker.register('/sw.js')
 		.then(function(reg) {
-			console.log('登録に成功しました。 Scope は ' + reg.scope);
-			var msg = '登録に成功しました。<br> Scope は ' + reg.scope + '<br>--------------<br>';
+			console.log('serviceWorker登録に成功しました。 Scope は ' + reg.scope);
+			var msg = 'serviceWorker登録に成功しました。<br> Scope は ' + reg.scope + '<br>--------------<br>';
 			msg_box.insertAdjacentHTML('afterbegin', msg);
 			// alert('登録に成功しました。 Scope は ' + reg.scope);
 		}).catch(function(error) {
-			console.log('登録に失敗しました。' + error);
-			var msg = '登録に失敗しました。<br>' + error + '<br>--------------<br>';
+			console.log('serviceWorker登録に失敗しました。' + error);
+			var msg = 'serviceWorker登録に失敗しました。<br>' + error + '<br>--------------<br>';
 			msg_box.insertAdjacentHTML('afterbegin', msg);
 			// alert('登録に失敗しました。' + error);
 		});
