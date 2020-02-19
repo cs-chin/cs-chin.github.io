@@ -53,6 +53,7 @@ if ('serviceWorker' in navigator) {
 	var msg = 'serviceWorker in navigator' + '<br>--------------<br>';
 		msg_box.insertAdjacentHTML('afterbegin', msg);
 	const wb = new Workbox('/sw.js');
+	console.log(wb);
 
 	window.addEventListener('load', () => {
 		navigator.serviceWorker.register('/sw.js')

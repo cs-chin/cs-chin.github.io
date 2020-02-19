@@ -1,33 +1,33 @@
 // importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
 
 
-if (workbox) {
-  console.log(`Yay! Workbox is loaded 🎉`);
+// if (workbox) {
+//   console.log(`Yay! Workbox is loaded 🎉`);
 
-  // workbox.loadModule('workbox-expiration');
+//   // workbox.loadModule('workbox-expiration');
 
-  // workbox.routing.registerRoute(
-  //   // new RegExp('\\.png$'),
-  //   new RegExp('\\.(?:png|jpg|jpeg|svg|gif)$'),
-  //   // new workbox.strategies.CacheFirst(),
-  //   new workbox.strategies.CacheFirst({
-  //     cacheName: 'image-cache',
-  //     plugins: [
-  //       new workbox.expiration.ExpirationPlugin({
-  //         // Cache only 20 images.
-  //         maxEntries: 20,
-  //         // Cache for a maximum of a week.
-  //         // maxAgeSeconds: 10,
-  //         maxAgeSeconds: 7 * 24 * 60 * 60,
-  //       })
-  //     ],
-  //   }),
-  // );
+//   // workbox.routing.registerRoute(
+//   //   // new RegExp('\\.png$'),
+//   //   new RegExp('\\.(?:png|jpg|jpeg|svg|gif)$'),
+//   //   // new workbox.strategies.CacheFirst(),
+//   //   new workbox.strategies.CacheFirst({
+//   //     cacheName: 'image-cache',
+//   //     plugins: [
+//   //       new workbox.expiration.ExpirationPlugin({
+//   //         // Cache only 20 images.
+//   //         maxEntries: 20,
+//   //         // Cache for a maximum of a week.
+//   //         // maxAgeSeconds: 10,
+//   //         maxAgeSeconds: 7 * 24 * 60 * 60,
+//   //       })
+//   //     ],
+//   //   }),
+//   // );
   
-  // workbox.loadModule('workbox-strategies');
-} else {
-  console.log(`Boo! Workbox didn't load 😬`);
-}
+//   // workbox.loadModule('workbox-strategies');
+// } else {
+//   console.log(`Boo! Workbox didn't load 😬`);
+// }
 
 self.addEventListener('fetch', function (event) {
 });
