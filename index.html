@@ -55,6 +55,8 @@ if ('serviceWorker' in navigator) {
 		var msg = '------- beforeinstallprompt -------<br>--------------<br>';
 		msg_box.insertAdjacentHTML('afterbegin', msg);
 		btnAdd.style.display = 'block';
+		e.preventDefault();// Prevent Chrome 76 and later from showing the mini-infobar
+		deferredPrompt = e;// Stash the event so it can be triggered later.
 
 		console.log(e);
 
@@ -64,9 +66,6 @@ if ('serviceWorker' in navigator) {
 				console.log('Not installed!!');
 				var msg = 'Not installed!!<br>--------------<br>';
 				msg_box.insertAdjacentHTML('afterbegin', msg);
-
-				e.preventDefault();// Prevent Chrome 76 and later from showing the mini-infobar
-				deferredPrompt = e;// Stash the event so it can be triggered later.
 				btnAdd.style.display = 'block';
 			} else {
 				console.log('installed!!');
