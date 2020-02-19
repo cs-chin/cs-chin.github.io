@@ -29,17 +29,19 @@
 /* serviceWorker */
 if ('serviceWorker' in navigator) {
 	var msg_box = document.getElementById("msg");
+	var msg = 'serviceWorker in navigator' + '<br>--------------<br>';
+		msg_box.insertAdjacentHTML('afterbegin', msg);
 
 	window.addEventListener('load', () => {
 		navigator.serviceWorker.register('/sw.js')
 		.then(function(reg) {
 			console.log('登録に成功しました。 Scope は ' + reg.scope);
-			var msg = '登録に成功しました。<br> Scope は ' + reg.scope + '<br>';
+			var msg = '登録に成功しました。<br> Scope は ' + reg.scope + '<br>--------------<br>';
 			msg_box.insertAdjacentHTML('afterbegin', msg);
 			// alert('登録に成功しました。 Scope は ' + reg.scope);
 		}).catch(function(error) {
 			console.log('登録に失敗しました。' + error);
-			var msg = '登録に失敗しました。<br>' + error;
+			var msg = '登録に失敗しました。<br>' + error + '<br>--------------<br>';
 			msg_box.insertAdjacentHTML('afterbegin', msg);
 			// alert('登録に失敗しました。' + error);
 		});
@@ -49,8 +51,8 @@ if ('serviceWorker' in navigator) {
 	let btnAdd = document.getElementById('btnAdd');
 
 	window.addEventListener('beforeinstallprompt', (e) => {
-		console.log('----------- beforeinstallprompt -----------');
-		var msg = '----------- beforeinstallprompt -----------<br>';
+		console.log('------- beforeinstallprompt -------');
+		var msg = '------- beforeinstallprompt -------<br>--------------<br>';
 		msg_box.insertAdjacentHTML('afterbegin', msg);
 		e.preventDefault();// Prevent Chrome 76 and later from showing the mini-infobar
 		deferredPrompt = e;// Stash the event so it can be triggered later.
@@ -79,8 +81,8 @@ if ('serviceWorker' in navigator) {
 	});
 
 	window.addEventListener('appinstalled', (evt) => {
-		console.log('----------- app installed -----------');
-		var msg = '----------- app installed -----------<br>';
+		console.log('------- app installed -------');
+		var msg = '------- app installed -------<br>--------------<br>';
 		msg_box.insertAdjacentHTML('afterbegin', msg);
 		btnAdd.style.display = 'none';
 	});
