@@ -56,6 +56,7 @@ if ('serviceWorker' in navigator) {
 		msg_box.insertAdjacentHTML('afterbegin', msg);
 
 		e.userChoice.then(function(choiceResult) {
+			console.log(choiceResult.outcome);
 			if(choiceResult.outcome == 'dismissed') {
 				console.log('Not installed!!');
 				var msg = 'Not installed!!<br>--------------<br>';
