@@ -6,6 +6,14 @@ if (workbox) {
   
   // import {registerRoute} from 'workbox-routing';
   // import {NetworkFirst} from 'workbox-strategies';
+  // workbox.precaching.*
+  // workbox.routing.*
+  // etc
+
+  workbox.routing.registerRoute(
+    new RegExp('\\.png$'),
+    new workbox.strategies.CacheFirst()
+  );
 
   // registerRoute(
   //   /\.js$/,
