@@ -23,7 +23,7 @@
 	<h1>はじめてのPWS</h1>
 	<img src="./images/icon-256.png" alt="" class="image" />
 	<div id="btnAdd" style="display: none;">Install</div>
-	<div id="msg"></div>
+	<div id="msg" style="padding: 10px;border: 1px solid green;color: green;margin: 20px 0;"></div>
 
 <script>
 /* serviceWorker */
@@ -34,12 +34,12 @@ if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.register('/sw.js')
 		.then(function(reg) {
 			console.log('登録に成功しました。 Scope は ' + reg.scope);
-			var msg = '登録に成功しました。 Scope は ' + reg.scope + '<br>';
+			var msg = '登録に成功しました。<br> Scope は ' + reg.scope + '<br>';
 			msg_box.insertAdjacentHTML('beforeend', msg);
 			// alert('登録に成功しました。 Scope は ' + reg.scope);
 		}).catch(function(error) {
 			console.log('登録に失敗しました。' + error);
-			var msg = '登録に失敗しました。' + error;
+			var msg = '登録に失敗しました。<br>' + error;
 			msg_box.insertAdjacentHTML('beforeend', msg);
 			// alert('登録に失敗しました。' + error);
 		});
