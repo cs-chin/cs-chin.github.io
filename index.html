@@ -51,6 +51,14 @@ if ('serviceWorker' in navigator) {
 	var msg = 'serviceWorker in navigator' + '<br>--------------<br>';
 		msg_box.insertAdjacentHTML('afterbegin', msg);
 
+	importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
+
+	if (workbox) {
+		console.log(`Yay! Workbox is loaded 🎉`);
+	} else {
+		console.log(`Boo! Workbox didn't load 😬`);
+	}
+
 	window.addEventListener('load', () => {
 		navigator.serviceWorker.register('/sw.js')
 		.then(function(reg) {
