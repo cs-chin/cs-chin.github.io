@@ -11,9 +11,12 @@ if (workbox) {
   // etc
 
   workbox.routing.registerRoute(
-    new RegExp('\\.png$'),
+    // new RegExp('\\.png$'),
+    new RegExp('\\.(?:png|jpg|jpeg|svg|gif)$'),
     new workbox.strategies.CacheFirst()
   );
+  
+  workbox.loadModule('workbox-strategies');
 
   // registerRoute(
   //   /\.js$/,
