@@ -1,4 +1,4 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
+// importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
 
 
 if (workbox) {
@@ -6,43 +6,23 @@ if (workbox) {
 
   // workbox.loadModule('workbox-expiration');
 
-  workbox.routing.registerRoute(
-    // new RegExp('\\.png$'),
-    new RegExp('\\.(?:png|jpg|jpeg|svg|gif)$'),
-    // new workbox.strategies.CacheFirst(),
-    new workbox.strategies.CacheFirst({
-      cacheName: 'image-cache',
-      plugins: [
-        new workbox.expiration.ExpirationPlugin({
-          // Cache only 20 images.
-          maxEntries: 20,
-          // Cache for a maximum of a week.
-          // maxAgeSeconds: 10,
-          maxAgeSeconds: 7 * 24 * 60 * 60,
-        })
-      ],
-    }),
-    // new workbox.expiration.ExpirationPlugin({
-    //       maxEntries: 60,
-    //       maxAgeSeconds: 10, // 10s
-    //       // maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
-    //     }),
-    // new workbox.strategies.CacheFirst({
-    //   cacheName: 'images',
-    //   plugins: [
-    //     new ExpirationPlugin({
-    //       maxEntries: 60,
-    //       maxAgeSeconds: 10, // 10s
-    //       // maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
-    //     }),
-    //   ],
-    // }),
-    // new workbox.strategies.ExpirationPlugin({
-    //   maxEntries: 60,
-    //   maxAgeSeconds: 10, // 10s
-    //   // maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
-    // }),
-  );
+  // workbox.routing.registerRoute(
+  //   // new RegExp('\\.png$'),
+  //   new RegExp('\\.(?:png|jpg|jpeg|svg|gif)$'),
+  //   // new workbox.strategies.CacheFirst(),
+  //   new workbox.strategies.CacheFirst({
+  //     cacheName: 'image-cache',
+  //     plugins: [
+  //       new workbox.expiration.ExpirationPlugin({
+  //         // Cache only 20 images.
+  //         maxEntries: 20,
+  //         // Cache for a maximum of a week.
+  //         // maxAgeSeconds: 10,
+  //         maxAgeSeconds: 7 * 24 * 60 * 60,
+  //       })
+  //     ],
+  //   }),
+  // );
   
   // workbox.loadModule('workbox-strategies');
 } else {

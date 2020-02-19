@@ -44,13 +44,16 @@
 	<div id="btnAdd" class="btn-square-pop" style="display: none;">Install</div>
 	<div id="msg" style="padding: 15px;border: 1px solid green;color: green;margin: 20px 0;"></div>
 
-<script>
+<script type="module">
+import {Workbox} from 'https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-window.prod.mjs';
+
 /* serviceWorker */
 if ('serviceWorker' in navigator) {
 	var msg_box = document.getElementById("msg");
 	var msg = 'serviceWorker in navigator' + '<br>--------------<br>';
 		msg_box.insertAdjacentHTML('afterbegin', msg);
-		
+	const wb = new Workbox('/sw.js');
+
 	window.addEventListener('load', () => {
 		navigator.serviceWorker.register('/sw.js')
 		.then(function(reg) {
