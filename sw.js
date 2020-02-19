@@ -3,25 +3,24 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox
 
 if (workbox) {
   console.log(`Yay! Workbox is loaded 🎉`);
-  
-  // import {registerRoute} from 'workbox-routing';
-  // import {NetworkFirst} from 'workbox-strategies';
-  // workbox.precaching.*
-  // workbox.routing.*
-  // etc
 
   workbox.routing.registerRoute(
     // new RegExp('\\.png$'),
     new RegExp('\\.(?:png|jpg|jpeg|svg|gif)$'),
-    new workbox.strategies.CacheFirst()
+    // new workbox.strategies.CacheFirst()
+    new workbox.strategies.CacheFirst({
+      cacheName: 'images',
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 60,
+          maxAgeSeconds: 10, // 10s
+          // maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+        }),
+      ],
+    })
   );
   
   workbox.loadModule('workbox-strategies');
-
-  // registerRoute(
-  //   /\.js$/,
-  //   new NetworkFirst()
-  // );
 } else {
   console.log(`Boo! Workbox didn't load 😬`);
 }
