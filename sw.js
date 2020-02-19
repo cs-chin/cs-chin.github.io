@@ -18,7 +18,7 @@ if (workbox) {
     //     }),
     //   ],
     // }),
-    new ExpirationPlugin({
+    new workbox.strategies.ExpirationPlugin({
       maxEntries: 60,
       maxAgeSeconds: 10, // 10s
       // maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
