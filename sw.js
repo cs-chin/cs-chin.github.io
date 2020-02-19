@@ -17,7 +17,8 @@ if (workbox) {
           // Cache only 20 images.
           maxEntries: 20,
           // Cache for a maximum of a week.
-          maxAgeSeconds: 10,
+          // maxAgeSeconds: 10,
+          maxAgeSeconds: 7 * 24 * 60 * 60,
         })
       ],
     }),
