@@ -35,12 +35,12 @@ if ('serviceWorker' in navigator) {
 		.then(function(reg) {
 			console.log('登録に成功しました。 Scope は ' + reg.scope);
 			var msg = '登録に成功しました。<br> Scope は ' + reg.scope + '<br>';
-			msg_box.insertAdjacentHTML('beforeend', msg);
+			msg_box.insertAdjacentHTML('afterbegin', msg);
 			// alert('登録に成功しました。 Scope は ' + reg.scope);
 		}).catch(function(error) {
 			console.log('登録に失敗しました。' + error);
 			var msg = '登録に失敗しました。<br>' + error;
-			msg_box.insertAdjacentHTML('beforeend', msg);
+			msg_box.insertAdjacentHTML('afterbegin', msg);
 			// alert('登録に失敗しました。' + error);
 		});
 	});
@@ -51,7 +51,7 @@ if ('serviceWorker' in navigator) {
 	window.addEventListener('beforeinstallprompt', (e) => {
 		console.log('----------- beforeinstallprompt -----------');
 		var msg = '----------- beforeinstallprompt -----------<br>';
-		msg_box.insertAdjacentHTML('beforeend', msg);
+		msg_box.insertAdjacentHTML('afterbegin', msg);
 		e.preventDefault();// Prevent Chrome 76 and later from showing the mini-infobar
 		deferredPrompt = e;// Stash the event so it can be triggered later.
 		btnAdd.style.display = 'block';
@@ -68,11 +68,11 @@ if ('serviceWorker' in navigator) {
 			if (choiceResult.outcome === 'accepted') {
 				console.log('○ User accepted the APP prompt');
 				var msg = '○ User accepted the APP prompt<br>';
-				msg_box.insertAdjacentHTML('beforeend', msg);
+				msg_box.insertAdjacentHTML('afterbegin', msg);
 			} else {
 				console.log('✖︎ User dismissed the APP prompt');
 				var msg = '✖︎ User dismissed the APP prompt<br>';
-				msg_box.insertAdjacentHTML('beforeend', msg);
+				msg_box.insertAdjacentHTML('afterbegin', msg);
 			}
 			deferredPrompt = null;
 		});
@@ -81,7 +81,7 @@ if ('serviceWorker' in navigator) {
 	window.addEventListener('appinstalled', (evt) => {
 		console.log('----------- app installed -----------');
 		var msg = '----------- app installed -----------<br>';
-		msg_box.insertAdjacentHTML('beforeend', msg);
+		msg_box.insertAdjacentHTML('afterbegin', msg);
 		btnAdd.style.display = 'none';
 	});
 }
