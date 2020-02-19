@@ -99,10 +99,12 @@ if ('serviceWorker' in navigator) {
 	});
 
 	window.addEventListener('appinstalled', (evt) => {
-		console.log('------- app installed -------');
-		var msg = '------- app installed -------<br>--------------<br>';
-		msg_box.insertAdjacentHTML('afterbegin', msg);
-		btnAdd.style.display = 'none';
+		setTimeout(function(){
+			console.log('------- app installed -------');
+			var msg = '------- app installed -------<br>--------------<br>';
+			msg_box.insertAdjacentHTML('afterbegin', msg);
+			btnAdd.style.display = 'none';
+		},100);
 	});
 }
 </script>
