@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<meta name="theme-color" content="#222f4e">
-	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-title" content="PWA">
@@ -28,24 +27,24 @@
 <script>
 /* serviceWorker */
 if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('/sw.js')
-	// navigator.serviceWorker.register('/sw.js', { scope: '/' })
-	.then(function(reg) {
-		console.log('登録に成功しました。 Scope は ' + reg.scope);
-		// alert('登録に成功しました。 Scope は ' + reg.scope);
-	}).catch(function(error) {
-		console.log('登録に失敗しました。' + error);
-		// alert('登録に失敗しました。' + error);
+	window.addEventListener('load', () => {
+		navigator.serviceWorker.register('/sw.js')
+		.then(function(reg) {
+			console.log('登録に成功しました。 Scope は ' + reg.scope);
+			// alert('登録に成功しました。 Scope は ' + reg.scope);
+		}).catch(function(error) {
+			console.log('登録に失敗しました。' + error);
+			// alert('登録に失敗しました。' + error);
+		});
 	});
 
 	let deferredPrompt;
 	let btnAdd = document.getElementById('btnAdd');
 
 	window.addEventListener('beforeinstallprompt', (e) => {
-		console.log('beforeinstallprompt');
-		console.log(e.userChoice);
-		e.preventDefault();
-		deferredPrompt = e;
+		console.log('----------- beforeinstallprompt -----------');
+		e.preventDefault();// Prevent Chrome 76 and later from showing the mini-infobar
+		deferredPrompt = e;// Stash the event so it can be triggered later.
 		btnAdd.style.display = 'block';
 	});
 
@@ -58,16 +57,16 @@ if ('serviceWorker' in navigator) {
 		deferredPrompt.userChoice
 		.then((choiceResult) => {
 			if (choiceResult.outcome === 'accepted') {
-				console.log('User accepted the APP prompt');
+				console.log('○ User accepted the APP prompt');
 			} else {
-				console.log('User dismissed the APP prompt');
+				console.log('✖︎ User dismissed the APP prompt');
 			}
 			deferredPrompt = null;
 		});
 	});
 
 	window.addEventListener('appinstalled', (evt) => {
-		console.log('app installed');
+		console.log('----------- app installed -----------');
 		btnAdd.style.display = 'none';
 	});
 }

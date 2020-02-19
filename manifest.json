@@ -1,5 +1,5 @@
 {
-	"name": "PWA Sample",
+	"name": "PWA",
 	"short_name": "PWA",
 	"description": "説明文が入ります",
 	"icons": [
@@ -35,6 +35,7 @@
 	],
 	"start_url": "./?utm_source=homescreen",
 	"background_color": "#fc980c",
-	"display": "standalone"
+	"display": "standalone",
+	"prefer_related_applications": false
 	// "orientation": "portrait"// ← 縦向き landscape ← 横向き
 }
