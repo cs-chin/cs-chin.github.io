@@ -55,6 +55,8 @@ if ('serviceWorker' in navigator) {
 		var msg = '------- beforeinstallprompt -------<br>--------------<br>';
 		msg_box.insertAdjacentHTML('afterbegin', msg);
 
+		console.log(e);
+
 		e.userChoice.then(function(choiceResult) {
 			console.log(choiceResult.outcome);
 			if(choiceResult.outcome == 'dismissed') {
