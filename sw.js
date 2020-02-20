@@ -1,58 +1,31 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
 
-
 if (workbox) {
   console.log(`Yay! Workbox is loaded 🎉`);
 
-  // workbox.loadModule('workbox-expiration');
-  // workbox.strategies.NetworkFirst();
-
   workbox.routing.registerRoute(
-    // new RegExp('\\.(?:js|css)$'),
-    // new workbox.strategies.NetworkFirst(),
+    new RegExp('\\.(?:js|css)$'),
+    new workbox.strategies.NetworkFirst(),
     
-    new RegExp('\\.css$'),
-    // Use cache but update in the background.
-    // new workbox.strategies.CacheFirst.StaleWhileRevalidate({
-    new workbox.strategies.StaleWhileRevalidate({
-      cacheName: 'css-cache',
-    }),
+    // new RegExp('\\.css$'),
+    // // Use cache but update in the background.
+    // new workbox.strategies.StaleWhileRevalidate({
+    //   cacheName: 'css-cache',
+    // }),
   );
 
-
   workbox.routing.registerRoute(
-    // new RegExp('\\.js$'),
-    // new RegExp('\\.png$'),
-    // new workbox.strategies.NetworkFirst(),
-
     new RegExp('\\.(?:png|jpg|jpeg|svg|gif)$'),
-    // new workbox.expiration.CacheExpiration({
-    //   cacheName: 'ex-image-cache',
-    //   // Cache only 20 images.
-    //   maxEntries: 20,
-    //   // Cache for a maximum of a week.
-    //   // maxAgeSeconds: 10,
-    //   maxAgeSeconds: 7 * 24 * 60 * 60,
-    // })
-    // new workbox.strategies.CacheFirst(),
     new workbox.strategies.CacheFirst({
       cacheName: 'images',
       plugins: [
         new workbox.expiration.ExpirationPlugin({
           maxEntries: 2000,
-          maxAgeSeconds: 60 * 60 * 24 * 30
+          maxAgeSeconds: 7 * 24 * 60 * 60
         }),
         new workbox.cacheableResponse.CacheableResponsePlugin({
             statuses: [0, 200]
         })
-        // new workbox.expiration.Plugin({
-        // new workbox.expiration.ExpirationPlugin({
-          // Cache only 20 images.
-          // maxEntries: 2000,
-          // // Cache for a maximum of a week.
-          // maxAgeSeconds: 86400,
-          // maxAgeSeconds: 7 * 24 * 60 * 60,
-        // })
       ]
     }),
   );
