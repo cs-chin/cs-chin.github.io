@@ -37,8 +37,8 @@ if (workbox) {
     new workbox.strategies.CacheFirst({
       cacheName: 'test-image-cache',
       plugins: [
+        new workbox.expiration.Plugin({
         // new workbox.expiration.ExpirationPlugin({
-        new workbox.expiration.ExpirationPlugin({
           // Cache only 20 images.
           maxEntries: 2000,
           // Cache for a maximum of a week.
