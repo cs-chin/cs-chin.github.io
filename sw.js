@@ -38,12 +38,12 @@ if (workbox) {
       cacheName: 'test-image-cache',
       plugins: [
         // new workbox.expiration.ExpirationPlugin({
-        new workbox.expiration.CacheExpiration({
+        new workbox.expiration.ExpirationPlugin({
           // Cache only 20 images.
-          maxEntries: 20,
+          maxEntries: 2000,
           // Cache for a maximum of a week.
-          // maxAgeSeconds: 10,
-          maxAgeSeconds: 7 * 24 * 60 * 60,
+          maxAgeSeconds: 86400,
+          // maxAgeSeconds: 7 * 24 * 60 * 60,
         })
       ],
     }),
