@@ -8,23 +8,35 @@ if (workbox) {
   // workbox.strategies.NetworkFirst();
 
   workbox.routing.registerRoute(
+    // new RegExp('\\.(?:js|css)$'),
+    // new workbox.strategies.NetworkFirst(),
+    
+    new RegExp('\\.css$'),
+    // Use cache but update in the background.
+    new workbox.strategies.CacheFirst.StaleWhileRevalidate({
+      cacheName: 'css-cache',
+    }),
+  );
+
+  workbox.routing.registerRoute(
     // new RegExp('\\.js$'),
-    new RegExp('\\.png$'),
-    new workbox.strategies.NetworkFirst(),
-    // new RegExp('\\.(?:png|jpg|jpeg|svg|gif)$'),
-    // // new workbox.strategies.CacheFirst(),
-    // new workbox.strategies.CacheFirst({
-    //   cacheName: 'image-cache',
-    //   plugins: [
-    //     new workbox.expiration.ExpirationPlugin({
-    //       // Cache only 20 images.
-    //       maxEntries: 20,
-    //       // Cache for a maximum of a week.
-    //       // maxAgeSeconds: 10,
-    //       maxAgeSeconds: 7 * 24 * 60 * 60,
-    //     })
-    //   ],
-    // }),
+    // new RegExp('\\.png$'),
+    // new workbox.strategies.NetworkFirst(),
+
+    new RegExp('\\.(?:png|jpg|jpeg|svg|gif)$'),
+    // new workbox.strategies.CacheFirst(),
+    new workbox.strategies.CacheFirst({
+      cacheName: 'test-image-cache',
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          // Cache only 20 images.
+          maxEntries: 20,
+          // Cache for a maximum of a week.
+          // maxAgeSeconds: 10,
+          maxAgeSeconds: 7 * 24 * 60 * 60,
+        })
+      ],
+    }),
   );
   
   // workbox.loadModule('workbox-strategies');
