@@ -25,28 +25,28 @@ if (workbox) {
     // new workbox.strategies.NetworkFirst(),
 
     new RegExp('\\.(?:png|jpg|jpeg|svg|gif)$'),
-    new workbox.expiration.CacheExpiration({
-      cacheName: 'ex-image-cache',
-      // Cache only 20 images.
-      maxEntries: 20,
-      // Cache for a maximum of a week.
-      // maxAgeSeconds: 10,
-      maxAgeSeconds: 7 * 24 * 60 * 60,
-    })
+    // new workbox.expiration.CacheExpiration({
+    //   cacheName: 'ex-image-cache',
+    //   // Cache only 20 images.
+    //   maxEntries: 20,
+    //   // Cache for a maximum of a week.
+    //   // maxAgeSeconds: 10,
+    //   maxAgeSeconds: 7 * 24 * 60 * 60,
+    // })
     // new workbox.strategies.CacheFirst(),
-    // new workbox.strategies.CacheFirst({
-    //   cacheName: 'test-image-cache',
-    //   plugins: [
-    //     // new workbox.expiration.ExpirationPlugin({
-    //     new workbox.expiration.CacheExpiration({
-    //       // Cache only 20 images.
-    //       maxEntries: 20,
-    //       // Cache for a maximum of a week.
-    //       // maxAgeSeconds: 10,
-    //       maxAgeSeconds: 7 * 24 * 60 * 60,
-    //     })
-    //   ],
-    // }),
+    new workbox.strategies.CacheFirst({
+      cacheName: 'test-image-cache',
+      plugins: [
+        // new workbox.expiration.ExpirationPlugin({
+        new workbox.expiration.CacheExpiration({
+          // Cache only 20 images.
+          maxEntries: 20,
+          // Cache for a maximum of a week.
+          // maxAgeSeconds: 10,
+          maxAgeSeconds: 7 * 24 * 60 * 60,
+        })
+      ],
+    }),
   );
   
   // workbox.loadModule('workbox-strategies');
