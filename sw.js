@@ -13,7 +13,8 @@ if (workbox) {
     
     new RegExp('\\.css$'),
     // Use cache but update in the background.
-    new workbox.strategies.CacheFirst.StaleWhileRevalidate({
+    // new workbox.strategies.CacheFirst.StaleWhileRevalidate({
+    new workbox.strategies.StaleWhileRevalidate({
       cacheName: 'css-cache',
     }),
   );
