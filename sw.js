@@ -19,6 +19,12 @@ if (workbox) {
     }),
   );
 
+
+  const expirationPlugin = new workbox.expiration.ExpirationPlugin({
+    maxEntries: 20,
+    maxAgeSeconds: 86400,
+  }),
+
   workbox.routing.registerRoute(
     // new RegExp('\\.js$'),
     // new RegExp('\\.png$'),
@@ -37,14 +43,15 @@ if (workbox) {
     new workbox.strategies.CacheFirst({
       cacheName: 'test-image-cache',
       plugins: [
-        new workbox.expiration.Plugin({
+        expirationPlugin,
+        // new workbox.expiration.Plugin({
         // new workbox.expiration.ExpirationPlugin({
           // Cache only 20 images.
-          maxEntries: 2000,
-          // Cache for a maximum of a week.
-          maxAgeSeconds: 86400,
+          // maxEntries: 2000,
+          // // Cache for a maximum of a week.
+          // maxAgeSeconds: 86400,
           // maxAgeSeconds: 7 * 24 * 60 * 60,
-        })
+        // })
       ],
     }),
   );
