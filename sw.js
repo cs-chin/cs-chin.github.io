@@ -10,7 +10,7 @@ if (workbox) {
   workbox.routing.registerRoute(
     // new RegExp('\\.js$'),
     new RegExp('\\.png$'),
-    workbox.strategies.NetworkFirst(),
+    new workbox.strategies.NetworkFirst(),
     // new RegExp('\\.(?:png|jpg|jpeg|svg|gif)$'),
     // // new workbox.strategies.CacheFirst(),
     // new workbox.strategies.CacheFirst({
